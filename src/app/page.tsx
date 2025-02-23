@@ -18,13 +18,13 @@ interface Evento {
 
 export default function Home() {
   const [name, setName] = useState<string>("")
+  const [data, setData] = useState<Evento[]>([])
 
 
-
-  async function setData() {
+  async function setDatas() {
+    const dado: Evento[] = []
     const docRef = await addDoc(collection(db, "events"), {
-      name: name,
-      
+      dado: name, data
     });
     console.log("Document written with ID: ", docRef.id);
   }
@@ -44,12 +44,10 @@ export default function Home() {
         <textarea placeholder="Observações (Opcional)" className="p-2 text-center rounded min-h-32 max-h-32" rows={3} />
         <button className="rounded bg-green-400 m-auto p-2 
         "
-          onClick={() => setData()}
+          onClick={() => setDatas()}
         >Registrar Evento</button>
       </div>
       <EventsTbi /> {/* esse é um componente que vai carregar abaixo com os valores enseridos nos inputs acima */}
-      <EventsTbi /> {/* esse é um componente que vai carregar abaixo com os valores enseridos nos inputs acima */}
-
     </div>
   );
 }
